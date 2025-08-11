@@ -32,11 +32,11 @@ public class SystemLanguageModelAgent<LogDestinationType> : LLMAgent {
         return model.isAvailable
     }
     
-    public func ask(input: String) async throws -> String? {
-        if !isAvailable() { return nil }
+    public func ask(input: String) async throws -> [String] {
+        if !isAvailable() { return [] }
         let llm_response = try await session.respond(prompt: { Prompt(input) })
         logTranscript()
-        return llm_response.content
+        return [llm_response.content]
     }
     
     private func logTranscript() {

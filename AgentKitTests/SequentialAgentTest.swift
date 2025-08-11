@@ -14,7 +14,8 @@ struct SequentialAgentTest {
 
     @Test func ask() async throws {
         let response = try await agent.ask(input: "日本で一番高い山は何山？")
-        #expect(response != nil)
-        #expect(response!.contains("富士山"))
+        #expect(!response.isEmpty)
+        #expect(response.count == 1)
+        #expect(response[0].contains("富士山"))
     }
 }

@@ -12,5 +12,5 @@ public protocol LLMAgent {
     var name: String { get }
     
     func isAvailable() -> Bool
-    func ask(input: String) async throws -> String?
+    func ask(input: String) async throws -> Array<String>
 }

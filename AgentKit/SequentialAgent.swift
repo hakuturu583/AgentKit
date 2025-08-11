@@ -24,19 +24,19 @@ public class SequentialAgent<LogDestinationType> : LLMAgent {
         return self.sub_agents.allSatisfy {$0.isAvailable()}
     }
     
-    public func ask(input: String) async throws -> String? {
+    public func ask(input: String) async throws -> Array<String> {
         var prompt = input
         for (index, agent) in sub_agents.enumerated() {
+            let responses = try await agent.ask(input: prompt)
             if index == sub_agents.count - 1 {
-                guard let response = try await agent.ask(input: prompt) else { return nil }
-                return response
+                return responses
             } else {
-                guard let response = try await agent.ask(input: prompt) else {
-                    return nil
+                guard let response = responses.first else {
+                    return []
                 }
                 prompt = response
             }
         }
-        return nil
+        return []
     }
 }

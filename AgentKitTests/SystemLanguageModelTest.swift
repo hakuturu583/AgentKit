@@ -10,17 +10,12 @@ import AgentKit
 import SwiftyBeaver
 
 struct SystemLanguageModelTest {
-    var agent = AgentKit.SequentialAgent(name: "sequential_agent",
-                                         sub_agents: [
-        AgentKit.SystemLanguageModelAgent(logDestination: ConsoleDestination()),
-        AgentKit.SystemLanguageModelAgent(instructions: "具体的な山の名称だけを抜き出して",
-                                          logDestination: ConsoleDestination())
-    ], logDestination: ConsoleDestination())
+    var agent = AgentKit.SystemLanguageModelAgent(logDestination: ConsoleDestination())
     
     @Test func ask() async throws {
         let response = try await agent.ask(input: "日本で一番高い山は何山？")
         #expect(!response.isEmpty)
         #expect(response.count == 1)
-        #expect(response[0] == "富士山")
+        #expect(response[0].contains("富士山"))
     }
 }

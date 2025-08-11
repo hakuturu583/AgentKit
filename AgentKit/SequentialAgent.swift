@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FoundationModels
 import SwiftyBeaver
 
 public class SequentialAgent<LogDestinationType> : LLMAgent {
@@ -24,10 +25,12 @@ public class SequentialAgent<LogDestinationType> : LLMAgent {
         return self.sub_agents.allSatisfy {$0.isAvailable()}
     }
     
-    public func ask(input: String) async throws -> Array<String> {
+    public func ask(
+        input: String,
+        generationOptions: GenerationOptions = GenerationOptions(temperature: 0.0)) async throws -> Array<String> {
         var prompt = input
         for (index, agent) in sub_agents.enumerated() {
-            let responses = try await agent.ask(input: prompt)
+            let responses = try await agent.ask(input: prompt, generationOptions: generationOptions)
             if index == sub_agents.count - 1 {
                 return responses
             } else {

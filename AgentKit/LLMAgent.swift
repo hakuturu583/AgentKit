@@ -6,11 +6,13 @@
 //
 
 import Foundation
-import SwiftyBeaver
+import FoundationModels
 
 public protocol LLMAgent {
     var name: String { get }
     
     func isAvailable() -> Bool
-    func ask(input: String) async throws -> Array<String>
+    func ask(
+        input: String,
+        generationOptions: GenerationOptions) async throws -> Array<String>
 }

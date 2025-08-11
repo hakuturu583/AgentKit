@@ -10,7 +10,8 @@ import AgentKit
 import SwiftyBeaver
 
 struct SystemLanguageModelTest {
-    var agent = AgentKit.SequentialAgent(name: "sequential_agent", agents: [
+    var agent = AgentKit.SequentialAgent(name: "sequential_agent",
+                                         sub_agents: [
         AgentKit.SystemLanguageModelAgent(logDestination: ConsoleDestination()),
         AgentKit.SystemLanguageModelAgent(instructions: "具体的な山の名称だけを抜き出して",
                                           logDestination: ConsoleDestination())

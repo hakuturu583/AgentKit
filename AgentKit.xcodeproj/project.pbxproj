@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B4FB4792E49AC0A00B59652 /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 6B4FB4782E49AC0A00B59652 /* SwiftyBeaver */; };
 		6BB9FB3E2E4999E70023350F /* AgentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BB9FB322E4999E70023350F /* AgentKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B4FB4792E49AC0A00B59652 /* SwiftyBeaver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +108,7 @@
 			);
 			name = AgentKit;
 			packageProductDependencies = (
+				6B4FB4782E49AC0A00B59652 /* SwiftyBeaver */,
 			);
 			productName = AgentKit;
 			productReference = 6BB9FB322E4999E70023350F /* AgentKit.framework */;
@@ -161,6 +164,9 @@
 			);
 			mainGroup = 6BB9FB282E4999E70023350F;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				6B4FB4772E49AC0A00B59652 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6BB9FB332E4999E70023350F /* Products */;
 			projectDirPath = "";
@@ -502,6 +508,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6B4FB4772E49AC0A00B59652 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyBeaver/SwiftyBeaver";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6B4FB4782E49AC0A00B59652 /* SwiftyBeaver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B4FB4772E49AC0A00B59652 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
+			productName = SwiftyBeaver;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6BB9FB292E4999E70023350F /* Project object */;
 }

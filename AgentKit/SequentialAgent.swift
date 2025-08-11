@@ -10,24 +10,24 @@ import SwiftyBeaver
 
 public class SequentialAgent<LogDestinationType> : LLMAgent {
     public var name: String
-    let agents: Array<LLMAgent>
+    let sub_agents: Array<LLMAgent>
     private var log = SwiftyBeaver.self
     
-    public init(name: String, agents: Array<LLMAgent> = [], logDestination: LogDestinationType) {
+    public init(name: String, sub_agents: Array<LLMAgent> = [], logDestination: LogDestinationType) {
         self.name = name
-        self.agents = agents
+        self.sub_agents = sub_agents
         self.log.addDestination(logDestination as! BaseDestination)
         self.log.info("SequentialAgent \(name) initialized.")
     }
     
     public func isAvailable() -> Bool {
-        return agents.allSatisfy {$0.isAvailable()}
+        return self.sub_agents.allSatisfy {$0.isAvailable()}
     }
     
     public func ask(input: String) async throws -> String? {
         var prompt = input
-        for (index, agent) in agents.enumerated() {
-            if index == agents.count - 1 {
+        for (index, agent) in sub_agents.enumerated() {
+            if index == sub_agents.count - 1 {
                 guard let response = try await agent.ask(input: prompt) else { return nil }
                 return response
             } else {

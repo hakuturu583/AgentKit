@@ -25,5 +25,6 @@ struct ParallelAgentTest {
             #expect(response.count == 2)
             #expect(response[0].contains("Fuji") || response[0].contains("富士山"))
             #expect(response[1].contains("富士山") || response[1].contains("Fuji"))
+            #expect(agent.getSystemLanguageModelSessions() == 2)
         }
 }

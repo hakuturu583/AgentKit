@@ -42,6 +42,10 @@ public class SystemLanguageModelAgent<LogDestinationType> : LLMAgent {
         self.log.info("Session created for agent \(name)")
     }
     
+    public func getSystemLanguageModelSessions() -> UInt8 {
+        return self.num_system_language_model_sessions
+    }
+    
     public func ask(
         input: String,
         generationOptions: GenerationOptions = GenerationOptions(temperature: 0.0)) async throws -> [String] {

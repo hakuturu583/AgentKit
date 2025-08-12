@@ -13,9 +13,9 @@ public protocol LLMAgent {
     var is_running: Bool { get }
     var num_system_language_model_sessions : UInt8 { get }
     
-    
     func isAvailable() -> Bool
     func ask(
         input: String,
         generationOptions: GenerationOptions) async throws -> Array<String>
+    func getSystemLanguageModelSessions() -> UInt8
 }

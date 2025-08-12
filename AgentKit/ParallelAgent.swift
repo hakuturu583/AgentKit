@@ -27,6 +27,14 @@ public class ParallelAgent<LogDestinationType> : LLMAgent {
         return self.sub_agents.allSatisfy {$0.isAvailable()}
     }
     
+    public func getSystemLanguageModelSessions() -> UInt8 {
+        var num_sessions: UInt8 = 0
+        for agent in sub_agents {
+            num_sessions = num_sessions + agent.getSystemLanguageModelSessions()
+        }
+        return num_sessions
+    }
+    
     public func ask(
         input: String,
         generationOptions: GenerationOptions = GenerationOptions(temperature: 0.0)) async throws -> [String] {

@@ -11,6 +11,7 @@ import SwiftyBeaver
 
 public class ParallelAgent<LogDestinationType> : LLMAgent {
     public var name: String
+    public var is_running: Bool = false
     let sub_agents: Array<LLMAgent>
     private var log = SwiftyBeaver.self
     
@@ -30,6 +31,7 @@ public class ParallelAgent<LogDestinationType> : LLMAgent {
         generationOptions: GenerationOptions = GenerationOptions(temperature: 0.0)) async throws -> [String] {
         // Launch all sub-agent asks in parallel using async lets
         var results = [[String]]()
+        is_running = true
         try await withThrowingTaskGroup(of: [String].self) { group in
             for agent in sub_agents {
                 group.addTask {
@@ -40,6 +42,7 @@ public class ParallelAgent<LogDestinationType> : LLMAgent {
                 results.append(result)
             }
         }
+        is_running = false
         // Flatten and return
         return results.flatMap { $0 }
     }

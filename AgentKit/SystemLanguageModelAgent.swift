@@ -11,6 +11,7 @@ import SwiftyBeaver
 
 public class SystemLanguageModelAgent<LogDestinationType> : LLMAgent {
     public var name: String
+    public var is_running: Bool = false
     private let model: SystemLanguageModel
     private var session: LanguageModelSession
     private var log = SwiftyBeaver.self
@@ -36,10 +37,12 @@ public class SystemLanguageModelAgent<LogDestinationType> : LLMAgent {
         input: String,
         generationOptions: GenerationOptions = GenerationOptions(temperature: 0.0)) async throws -> [String] {
         if !isAvailable() { return [] }
+        is_running = true
         let llm_response = try await session.respond(
             options: generationOptions,
             prompt: { Prompt(input) }
         )
+        is_running = false
         logTranscript()
         return [llm_response.content]
     }

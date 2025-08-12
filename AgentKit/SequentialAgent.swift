@@ -11,6 +11,7 @@ import SwiftyBeaver
 
 public class SequentialAgent<LogDestinationType> : LLMAgent {
     public var name: String
+    public var is_running = false
     let sub_agents: Array<LLMAgent>
     private var log = SwiftyBeaver.self
     
@@ -29,6 +30,7 @@ public class SequentialAgent<LogDestinationType> : LLMAgent {
         input: String,
         generationOptions: GenerationOptions = GenerationOptions(temperature: 0.0)) async throws -> Array<String> {
         var prompt = input
+        is_running = true
         for (index, agent) in sub_agents.enumerated() {
             let responses = try await agent.ask(input: prompt, generationOptions: generationOptions)
             if index == sub_agents.count - 1 {
@@ -40,6 +42,7 @@ public class SequentialAgent<LogDestinationType> : LLMAgent {
                 prompt = response
             }
         }
+        is_running = false
         return []
     }
 }

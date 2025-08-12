@@ -37,7 +37,9 @@ public class ParallelAgent<LogDestinationType> : LLMAgent {
     public func closeSession() -> Void
     {
         for agent in sub_agents {
-            agent.closeSession()
+            if(!agent.is_running) {
+                agent.closeSession()
+            }
         }
     }
     

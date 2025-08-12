@@ -12,7 +12,7 @@ import SwiftyBeaver
 public class ParallelAgent<LogDestinationType> : LLMAgent {
     public var name: String
     public var is_running: Bool = false
-    public var num_system_model_sessions:UInt8 = 0
+    public var num_system_language_model_sessions:UInt8 = 0
     let sub_agents: Array<LLMAgent>
     private var log = SwiftyBeaver.self
     

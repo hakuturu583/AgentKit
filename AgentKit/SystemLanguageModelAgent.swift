@@ -12,7 +12,7 @@ import SwiftyBeaver
 public class SystemLanguageModelAgent<LogDestinationType> : LLMAgent {
     public var name: String
     public var is_running: Bool = false
-    public var num_system_model_sessions: UInt8 = 0
+    public var num_system_language_model_sessions: UInt8 = 0
     private let model: SystemLanguageModel
     private var session: LanguageModelSession?
     private var instructions: String
@@ -37,7 +37,7 @@ public class SystemLanguageModelAgent<LogDestinationType> : LLMAgent {
     }
     
     private func createSession() {
-        num_system_model_sessions = 1
+        num_system_language_model_sessions = 1
         session = LanguageModelSession(model: model, instructions: instructions)
         self.log.info("Session created for agent \(name)")
     }

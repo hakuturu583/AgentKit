@@ -23,5 +23,7 @@ struct SequentialAgentTest {
         #expect(response.count == 1)
         #expect(response[0] == "富士山")
         #expect(agent.getSystemLanguageModelSessions() == 2)
+        agent.closeSession()
+        #expect(agent.getSystemLanguageModelSessions() == 0)
     }
 }

@@ -36,10 +36,16 @@ public class SystemLanguageModelAgent<LogDestinationType> : LLMAgent {
         return model.isAvailable
     }
     
-    private func createSession() {
+    public func createSession() {
         num_system_language_model_sessions = 1
         session = LanguageModelSession(model: model, instructions: instructions)
         self.log.info("Session created for agent \(name)")
+    }
+    
+    public func closeSession() {
+        num_system_language_model_sessions = 0
+        session = nil
+        self.log.info("Session closed for agent \(name)")
     }
     
     public func getSystemLanguageModelSessions() -> UInt8 {

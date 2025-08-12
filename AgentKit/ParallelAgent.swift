@@ -27,6 +27,20 @@ public class ParallelAgent<LogDestinationType> : LLMAgent {
         return self.sub_agents.allSatisfy {$0.isAvailable()}
     }
     
+    public func createSession() -> Void
+    {
+        for agent in sub_agents {
+            agent.createSession()
+        }
+    }
+    
+    public func closeSession() -> Void
+    {
+        for agent in sub_agents {
+            agent.closeSession()
+        }
+    }
+    
     public func getSystemLanguageModelSessions() -> UInt8 {
         var num_sessions: UInt8 = 0
         for agent in sub_agents {

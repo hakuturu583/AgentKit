@@ -18,5 +18,7 @@ struct SystemLanguageModelTest {
         #expect(response.count == 1)
         #expect(response[0].contains("富士山"))
         #expect(agent.getSystemLanguageModelSessions() == 1)
+        agent.closeSession()
+        #expect(agent.getSystemLanguageModelSessions() == 0)
     }
 }

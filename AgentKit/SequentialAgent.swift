@@ -13,14 +13,20 @@ public class SequentialAgent<LogDestinationType> : LLMAgent {
     public var name: String
     public var is_running = false
     public var num_system_language_model_sessions: UInt8 = 0
+    public var max_system_language_model_sessions: UInt8 = 8
     let sub_agents: Array<LLMAgent>
     private var log = SwiftyBeaver.self
     
-    public init(name: String, sub_agents: Array<LLMAgent> = [], logDestination: LogDestinationType) {
+    public init(
+        name: String,
+        sub_agents: Array<LLMAgent> = [],
+        logDestination: LogDestinationType,
+        max_system_language_model_sessions: UInt8 = 8) {
         self.name = name
         self.sub_agents = sub_agents
         self.log.addDestination(logDestination as! BaseDestination)
         self.log.info("SequentialAgent \(name) initialized.")
+        self.max_system_language_model_sessions = max_system_language_model_sessions
     }
     
     public func isAvailable() -> Bool {

@@ -12,6 +12,7 @@ public protocol LLMAgent {
     var name: String { get }
     var is_running: Bool { get }
     var num_system_language_model_sessions : UInt8 { get }
+    var max_system_language_model_sessions : UInt8 { get }
     
     func isAvailable() -> Bool
     func createSession() -> Void

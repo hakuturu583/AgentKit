@@ -13,6 +13,7 @@ public class SystemLanguageModelAgent<LogDestinationType> : LLMAgent {
     public var name: String
     public var is_running: Bool = false
     public var num_system_language_model_sessions: UInt8 = 0
+    public var max_system_language_model_sessions: UInt8 = 8
     private let model: SystemLanguageModel
     private var session: LanguageModelSession?
     private var instructions: String
@@ -20,13 +21,15 @@ public class SystemLanguageModelAgent<LogDestinationType> : LLMAgent {
     
     public init(name: String = UUID().uuidString.lowercased(),
                 instructions: String = "",
-                logDestination: LogDestinationType) {
+                logDestination: LogDestinationType,
+                max_system_language_model_sessions: UInt8 = 8) {
         self.name = name
         self.model = SystemLanguageModel.default
         self.instructions = instructions
         self.session = nil
         self.log.addDestination(logDestination as! BaseDestination)
         self.log.info("SystemLanguageModelAgent \(name) initialized.")
+        self.max_system_language_model_sessions = max_system_language_model_sessions
     }
     
     public func isAvailable() -> Bool {

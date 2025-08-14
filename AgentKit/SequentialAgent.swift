@@ -63,6 +63,10 @@ public class SequentialAgent<LogDestinationType> : LLMAgent {
         var prompt = input
         is_running = true
         for (index, agent) in sub_agents.enumerated() {
+            while(getSystemLanguageModelSessions() > self.max_system_language_model_sessions) {
+                self.closeSession()
+                try await Task.sleep(nanoseconds: 1_000_000_000)
+            }
             let responses = try await agent.ask(input: prompt, generationOptions: generationOptions)
             if index == sub_agents.count - 1 {
                 return responses

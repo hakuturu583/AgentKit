@@ -46,8 +46,13 @@ public class SystemLanguageModelAgent<LogDestinationType> : LLMAgent {
     }
     
     public func closeSession() {
-        num_system_language_model_sessions = 0
-        session = nil
+        guard let session = self.session else { return }
+        guard session.isResponding else {
+            self.log.info("Agent \(name) is now responding, so do not close session.")
+            return
+        }
+        self.num_system_language_model_sessions = 0
+        self.session = nil
         self.log.info("Session closed for agent \(name)")
     }
     

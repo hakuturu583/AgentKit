@@ -61,7 +61,10 @@ public class ParallelAgent<LogDestinationType> : LLMAgent {
         try await withThrowingTaskGroup(of: [String].self) { group in
             for agent in sub_agents {
                 group.addTask {
-                    try await agent.ask(input: input, generationOptions:  generationOptions)
+                    if(self.getSystemLanguageModelSessions() > self.max_system_language_model_sessions) {
+                        // self.closeSession()
+                    }
+                    return try await agent.ask(input: input, generationOptions:  generationOptions)
                 }
             }
             for try await result in group {

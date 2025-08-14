@@ -47,7 +47,7 @@ public class SystemLanguageModelAgent<LogDestinationType> : LLMAgent {
     
     public func closeSession() {
         guard let session = self.session else { return }
-        guard session.isResponding else {
+        if(session.isResponding) {
             self.log.info("Agent \(name) is now responding, so do not close session.")
             return
         }
@@ -74,12 +74,12 @@ public class SystemLanguageModelAgent<LogDestinationType> : LLMAgent {
             return []
         }
         
-        is_running = true
+        self.is_running = true
         let llm_response = try await session.respond(
             options: generationOptions,
             prompt: { Prompt(input) }
         )
-        is_running = false
+        self.is_running = false
         logTranscript()
         return [llm_response.content]
     }

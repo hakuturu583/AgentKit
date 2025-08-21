@@ -166,6 +166,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				6B4FB4772E49AC0A00B59652 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
+				6B2CB9C62E573CA4004375A9 /* XCRemoteSwiftPackageReference "swift-docc-plugin" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6BB9FB332E4999E70023350F /* Products */;
@@ -510,6 +511,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6B2CB9C62E573CA4004375A9 /* XCRemoteSwiftPackageReference "swift-docc-plugin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-docc-plugin";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.5;
+			};
+		};
 		6B4FB4772E49AC0A00B59652 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyBeaver/SwiftyBeaver";

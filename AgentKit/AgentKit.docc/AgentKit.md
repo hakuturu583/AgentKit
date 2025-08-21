@@ -1,6 +1,7 @@
 # ``AgentKit``
 
-<!--@START_MENU_TOKEN@-->Summary<!--@END_MENU_TOKEN@-->
+Build LLM Agent with iOS/MacOS !
+This project is inspired by [Google ADK](https://google.github.io/adk-docs/)
 
 ## Overview
 

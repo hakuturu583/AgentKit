@@ -15,6 +15,22 @@ import SwiftyBeaver
 /// - Generic parameter: `LogDestinationType` must be a ``SwiftyBeaver/BaseDestination``.
 ///   Choose any destination you prefer (e.g., `ConsoleDestination`, `FileDestination`)
 ///   by referring to the SwiftyBeaver API Reference.
+///
+/// Example
+/// ```swift
+/// import AgentKit
+/// import SwiftyBeaver
+///
+/// let agent = SystemLanguageModelAgent(
+///   instructions: "Answer with only the mountain name",
+///   logDestination: ConsoleDestination()
+/// )
+///
+/// guard agent.isAvailable() else { fatalError("SLM not available") }
+/// let answers = try await agent.ask(input: "日本で一番高い山は何山？")
+/// // e.g. ["富士山"]
+/// agent.closeSession()
+/// ```
 public class SystemLanguageModelAgent<LogDestinationType> : LLMAgent {
     /// Agent name. Defaults to a lowercased UUID.
     public var name: String

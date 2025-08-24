@@ -15,6 +15,33 @@ import SwiftyBeaver
 /// - Generic parameter: `LogDestinationType` must be a ``SwiftyBeaver/BaseDestination``.
 ///   Choose any destination you prefer (e.g., `ConsoleDestination`, `FileDestination`)
 ///   by referring to the SwiftyBeaver API Reference.
+///
+/// Example
+/// ```swift
+/// import AgentKit
+/// import SwiftyBeaver
+///
+/// let loop = LoopAgent(
+///   name: "loop_agent",
+///   sub_agents: [
+///     SystemLanguageModelAgent(
+///       instructions: "日本で一番高い山を答えて",
+///       logDestination: ConsoleDestination()
+///     ),
+///     SystemLanguageModelAgent(
+///       instructions: "前の回答から山名のみを抽出して",
+///       logDestination: ConsoleDestination()
+///     )
+///   ],
+///   logDestination: ConsoleDestination(),
+///   max_system_language_model_sessions: 8,
+///   max_loop: 3
+/// )
+///
+/// let result = try await loop.ask(input: "日本で一番高い山は何山？")
+/// // e.g. ["富士山"]
+/// loop.closeSession()
+/// ```
 class LoopAgent<LogDestinationType> : SequentialAgent<LogDestinationType> {
     /// Maximum number of iterations.
     let max_loop : UInt8

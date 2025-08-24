@@ -15,6 +15,28 @@ import SwiftyBeaver
 /// - Generic parameter: `LogDestinationType` must be a ``SwiftyBeaver/BaseDestination``.
 ///   Choose any destination you prefer (e.g., `ConsoleDestination`, `FileDestination`)
 ///   by referring to the SwiftyBeaver API Reference.
+///
+/// Example
+/// ```swift
+/// import AgentKit
+/// import SwiftyBeaver
+///
+/// let seq = SequentialAgent(
+///   name: "sequential_agent",
+///   sub_agents: [
+///     SystemLanguageModelAgent(logDestination: ConsoleDestination()),
+///     SystemLanguageModelAgent(
+///       instructions: "前の回答から具体的な山の名称だけを抜き出して",
+///       logDestination: ConsoleDestination()
+///     )
+///   ],
+///   logDestination: ConsoleDestination()
+/// )
+///
+/// let result = try await seq.ask(input: "日本で一番高い山は何山？")
+/// // e.g. ["富士山"]
+/// seq.closeSession()
+/// ```
 public class SequentialAgent<LogDestinationType> : LLMAgent {
     /// Agent name.
     public var name: String

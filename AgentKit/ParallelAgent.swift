@@ -14,6 +14,31 @@ import SwiftyBeaver
 /// - Generic parameter: `LogDestinationType` must be a ``SwiftyBeaver/BaseDestination``.
 ///   Choose any destination you prefer (e.g., `ConsoleDestination`, `FileDestination`)
 ///   by referring to the SwiftyBeaver API Reference.
+///
+/// Example
+/// ```swift
+/// import AgentKit
+/// import SwiftyBeaver
+///
+/// let par = ParallelAgent(
+///   name: "parallel_agent",
+///   sub_agents: [
+///     SystemLanguageModelAgent(
+///       instructions: "答えは英語で山名のみ",
+///       logDestination: ConsoleDestination()
+///     ),
+///     SystemLanguageModelAgent(
+///       instructions: "答えは日本語で山名のみ",
+///       logDestination: ConsoleDestination()
+///     ),
+///   ],
+///   logDestination: ConsoleDestination()
+/// )
+///
+/// let responses = try await par.ask(input: "日本で一番高い山は何山？")
+/// // e.g. ["Mount Fuji", "富士山"]
+/// par.closeSession()
+/// ```
 public class ParallelAgent<LogDestinationType> : LLMAgent {
     /// Agent name.
     public var name: String

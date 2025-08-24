@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+/// AgentKit module.
+///
+/// - Note: See the DocC bundle `AgentKit.docc` for guides and examples.

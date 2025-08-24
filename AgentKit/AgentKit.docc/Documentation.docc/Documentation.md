@@ -1,14 +1,35 @@
 # ``AgentKit``
 
-Build LLM Agent with iOS/MacOS !
-This project is inspired by [Google ADK](https://google.github.io/adk-docs/)
+Composable LLM agents for Apple platforms using the system language model.
 
-## Overview
+AgentKit provides small, focused agents that you can compose to build
+interactive reasoning pipelines. Start with a single system-backed agent,
+then fan-out in parallel or chain results sequentially.
 
-<!--@START_MENU_TOKEN@-->Text<!--@END_MENU_TOKEN@-->
+> Note: Requires a device or simulator with System Language Model support.
 
-## Topics
+## Quick Start
 
-### <!--@START_MENU_TOKEN@-->Group<!--@END_MENU_TOKEN@-->
+Create a single agent and ask a question. See ``SystemLanguageModelAgent`` for a full example.
 
-- <!--@START_MENU_TOKEN@-->``Symbol``<!--@END_MENU_TOKEN@-->
+## Sequential Composition
+
+Chain agents when the next step depends on the previous answer. See ``SequentialAgent`` for an example.
+
+## Parallel Composition
+
+Ask multiple agents at once and gather all results. See ``ParallelAgent`` for an example.
+
+## Session Management
+
+- Call ``LLMAgent/isAvailable()`` before asking.
+- Use ``LLMAgent/createSession()`` and ``LLMAgent/closeSession()`` to manage resources.
+- Respect ``LLMAgent/max_system_language_model_sessions`` when composing agents.
+
+## API Reference
+
+- ``LLMAgent``
+- ``SystemLanguageModelAgent``
+- ``SequentialAgent``
+- ``ParallelAgent``
+ - ``LoopAgent``

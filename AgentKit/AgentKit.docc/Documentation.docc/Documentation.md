@@ -32,3 +32,4 @@ Ask multiple agents at once and gather all results. See ``ParallelAgent`` for an
 - ``SystemLanguageModelAgent``
 - ``SequentialAgent``
 - ``ParallelAgent``
+ - ``LoopAgent``

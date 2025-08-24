@@ -42,7 +42,7 @@ import SwiftyBeaver
 /// // e.g. ["富士山"]
 /// loop.closeSession()
 /// ```
-class LoopAgent<LogDestinationType> : SequentialAgent<LogDestinationType> {
+public class LoopAgent<LogDestinationType> : SequentialAgent<LogDestinationType> {
     /// Maximum number of iterations.
     let max_loop : UInt8
     
